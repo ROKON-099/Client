@@ -9,7 +9,7 @@ const MyBookings = () => {
   const { user } = useAuth();
   const queryClient = useQueryClient();
 
-  // ================= MY BOOKINGS =================
+  
   const { data: bookings = [], isLoading } = useQuery({
     queryKey: ["my-bookings", user?.email],
     enabled: !!user?.email,
@@ -21,7 +21,7 @@ const MyBookings = () => {
     },
   });
 
-  // ================= CANCEL BOOKING =================
+  
   const cancelMutation = useMutation({
     mutationFn: async (bookingId) => {
       return axios.delete(

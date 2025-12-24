@@ -38,7 +38,7 @@ const AuthProvider = ({ children }) => {
     const result = await signInWithEmailAndPassword(auth, email, password);
     return result;
   } finally {
-    setLoading(false);   // ✅ THIS FIXES LOADING STUCK
+    setLoading(false);   
   }
 };
 
@@ -80,7 +80,7 @@ const AuthProvider = ({ children }) => {
     loading,
     registerUser,
     loginUser,
-    login: loginUser,     // ✅ alias added (NO other file change needed)
+    login: loginUser,     
     googleLogin,
     logoutUser,
   };
