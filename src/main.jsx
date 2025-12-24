@@ -11,8 +11,8 @@ import AuthProvider from "./Provider/AuthProvider";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      retry: false,               // Disable retries (avoids noisy logs)
-      refetchOnWindowFocus: false // Prevent refetch on tab focus
+      retry: false,               
+      refetchOnWindowFocus: false,
     },
   },
 });
