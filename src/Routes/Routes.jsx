@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 
 // Layout
-import MainLayout from "../Layout/MainLayout";
+import MainLayout from "../Layout/Mainlayout";
 
 // Pages
 import Home from "../pages/Home";
