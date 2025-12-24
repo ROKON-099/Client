@@ -3,8 +3,6 @@ import { NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaBars, FaTimes } from "react-icons/fa";
 
-
-
 const Navber = () => {
   const { user, logoutUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -20,8 +18,8 @@ const Navber = () => {
     `btn btn-ghost ${isActive ? "text-indigo-700 font-bold" : ""}`;
 
   return (
-    <div className="navbar bg-base-100 shadow-md px-4 md:px-6">
-      
+    <div className="navbar bg-base-100 shadow-md px-4 md:px-6 relative">
+
       {/* LEFT: USER AVATAR + LOGO */}
       <div className="flex-1 flex items-center gap-4">
         {user && (
@@ -36,6 +34,7 @@ const Navber = () => {
         <NavLink
           to="/"
           className="text-2xl italic font-bold text-indigo-600"
+          onClick={() => setMenuOpen(false)}
         >
           TravelEase
         </NavLink>
@@ -73,61 +72,95 @@ const Navber = () => {
         )}
       </div>
 
-      
+      {/* HAMBURGER ICON (MOBILE) */}
+      <div className="md:hidden">
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="text-2xl text-indigo-600 focus:outline-none"
+        >
+          {menuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
+
       {/* MOBILE MENU */}
       {menuOpen && (
-        <div className="absolute top-16 right-4 w-52 bg-white shadow-lg rounded-lg flex flex-col p-4 gap-3 z-50 md:hidden">
-          <NavLink to="/" onClick={() => setMenuOpen(false)} className={activeClass}>
+        <div className="absolute top-16 right-4 w-56 bg-white shadow-lg rounded-lg flex flex-col p-4 gap-3 z-50 md:hidden">
+
+          <NavLink
+            to="/"
+            onClick={() => setMenuOpen(false)}
+            className={activeClass}
+          >
             Home
           </NavLink>
-          <NavLink to="/all-vehicles" onClick={() => setMenuOpen(false)} className={activeClass}>
+
+          <NavLink
+            to="/all-vehicles"
+            onClick={() => setMenuOpen(false)}
+            className={activeClass}
+          >
             All Vehicles
           </NavLink>
 
           {user && (
             <>
-              <NavLink to="/add-vehicle" onClick={() => setMenuOpen(false)} className={activeClass}>
+              <NavLink
+                to="/add-vehicle"
+                onClick={() => setMenuOpen(false)}
+                className={activeClass}
+              >
                 Add Vehicle
               </NavLink>
-              <NavLink to="/my-vehicles" onClick={() => setMenuOpen(false)} className={activeClass}>
+
+              <NavLink
+                to="/my-vehicles"
+                onClick={() => setMenuOpen(false)}
+                className={activeClass}
+              >
                 My Vehicles
               </NavLink>
-              <NavLink to="/my-bookings" onClick={() => setMenuOpen(false)} className={activeClass}>
+
+              <NavLink
+                to="/my-bookings"
+                onClick={() => setMenuOpen(false)}
+                className={activeClass}
+              >
                 My Bookings
               </NavLink>
             </>
           )}
 
-    {!user ? (
-      <>
-        <NavLink
-          to="/login"
-          onClick={() => setMenuOpen(false)}
-          className="btn bg-indigo-600 text-white w-full hover:bg-indigo-700"
-        >
-          Login
-        </NavLink>
-        <NavLink
-          to="/register"
-          onClick={() => setMenuOpen(false)}
-          className="btn btn-outline border-indigo-600 text-indigo-600 w-full"
-        >
-          Register
-        </NavLink>
-      </>
-    ) : (
-      <button
-        onClick={() => {
-          handleLogout();
-          setMenuOpen(false);
-        }}
-        className="btn bg-indigo-600 text-white w-full hover:bg-indigo-700"
-      >
-        Logout
-      </button>
-    )}
-  </div>
-)}
+          {!user ? (
+            <>
+              <NavLink
+                to="/login"
+                onClick={() => setMenuOpen(false)}
+                className="btn bg-indigo-600 text-white w-full hover:bg-indigo-700"
+              >
+                Login
+              </NavLink>
+
+              <NavLink
+                to="/register"
+                onClick={() => setMenuOpen(false)}
+                className="btn btn-outline border-indigo-600 text-indigo-600 w-full"
+              >
+                Register
+              </NavLink>
+            </>
+          ) : (
+            <button
+              onClick={() => {
+                handleLogout();
+                setMenuOpen(false);
+              }}
+              className="btn bg-indigo-600 text-white w-full hover:bg-indigo-700"
+            >
+              Logout
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };

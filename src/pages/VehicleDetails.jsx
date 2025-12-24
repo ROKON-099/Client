@@ -35,7 +35,6 @@ const VehicleDetails = () => {
     },
   });
 
-  // ✅ CHECK ONLY THIS VEHICLE
   const alreadyBooked = myBookings.some(
     (booking) => String(booking.vehicle?._id) === String(id)
   );
@@ -81,46 +80,46 @@ const VehicleDetails = () => {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="max-w-5xl mx-auto px-4 py-12"
+      className="max-w-5xl mx-auto px-4 sm:px-6 py-10"
     >
-      <div className="bg-white rounded-3xl shadow-2xl p-6 md:p-10">
+      <div className="bg-white rounded-3xl shadow-2xl p-5 sm:p-6 md:p-10">
         {/* TITLE */}
-        <h1 className="text-4xl font-bold text-indigo-700 mb-6 border-b pb-3">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-indigo-700 mb-6 border-b pb-3">
           {vehicle.vehicleName}
         </h1>
 
-        <div className="flex flex-col md:flex-row gap-10">
+        <div className="flex flex-col md:flex-row gap-6 md:gap-10">
           {/* IMAGE */}
-          <div className="md:w-1/2">
+          <div className="md:w-1/2 w-full">
             <img
               src={vehicle.coverImage}
               alt={vehicle.vehicleName}
-              className="w-full h-80 object-cover rounded-2xl shadow-lg"
+              className="w-full h-56 sm:h-72 md:h-80 object-cover rounded-2xl shadow-lg"
             />
           </div>
 
           {/* DETAILS */}
-          <div className="md:w-1/2 space-y-4">
-            <p className="text-3xl font-bold text-purple-600">
+          <div className="md:w-1/2 w-full space-y-4">
+            <p className="text-2xl sm:text-3xl font-bold text-purple-600">
               ৳{vehicle.pricePerDay} / day
             </p>
 
-            <p className="text-lg font-semibold">
+            <p className="text-base sm:text-lg font-semibold">
               Owner:{" "}
               <span className="text-indigo-600">{vehicle.owner}</span>
             </p>
 
-            <p className="text-lg font-semibold">
+            <p className="text-base sm:text-lg font-semibold">
               Location:{" "}
               <span className="text-indigo-600">{vehicle.location}</span>
             </p>
 
             {/* DESCRIPTION */}
             <div className="pt-4">
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">
+              <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-800">
                 Description
               </h3>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
                 {vehicle.description || "No description provided."}
               </p>
             </div>
@@ -144,7 +143,7 @@ const VehicleDetails = () => {
                 bookMutation.mutate();
               }}
               disabled={alreadyBooked || bookMutation.isPending}
-              className={`w-full mt-6 font-bold py-4 rounded-xl text-lg transition transform
+              className={`w-full mt-6 font-bold py-3 sm:py-4 rounded-xl text-base sm:text-lg transition transform
                 ${
                   alreadyBooked
                     ? "bg-gray-300 text-gray-600 cursor-not-allowed"
